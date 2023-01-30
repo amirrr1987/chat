@@ -6,7 +6,7 @@ import router from "./router";
 // main.ts
 import "uno.css";
 import "virtual:unocss-devtools";
-import "./assets/main.css";
+import "@unocss/reset/tailwind.css";
 
 const app = createApp(App);
 
