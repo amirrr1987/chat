@@ -1,0 +1,10 @@
+POST http://localhost:5000/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "کباب سرای شاهین",
+    "description": "فست فود ارزان",
+    "address": "بیست متی گلستان شرقی پلاک ۲",
+    "adminUsername": "09198881400",
+    "adminPassword": "09198881400"
+}
