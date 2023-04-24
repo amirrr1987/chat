@@ -40,12 +40,37 @@ class UserController {
 
   async updateChatList(data) {
 
-    let sender = await UserModel.findById(data.senderId);
-    const existingChat = sender.chats.find(chat => chat.friendId.equals(data.getterId));
-    if (!existingChat) {
-      sender.chats.push({ friendId: data.getterId, chatId: data.chatId })
-    }
-    await sender.save();
+    // let sender = await UserModel.findById(data.senderId);
+    // const updatedChatBySenderId = await UserModel.findByIdAndUpdate(data.senderId, { 'chats.friendId': { $ne: data.getterId } },
+    //   { "chats": { "$set": { 'friendId': data.getterId, 'chatId': data.chatId } } })
+
+
+    const updatedChatBySenderId = await UserModel.findOneAndUpdate(
+      { _id: data.senderId, "chats.friendId": { $ne: data.getterId } },
+      { $push: { chats: { friendId: data.getterId, chatId: data.chatId } } },
+      { new: true }
+    );
+
+    const updatedChatByGetterId = await UserModel.findOneAndUpdate(
+      { _id: data.getterId, "chats.friendId": { $ne: data.senderId } },
+      { $push: { chats: { friendId: data.senderId, chatId: data.chatId } } },
+      { new: true }
+    );
+
+    // console.log(updatedChatBySenderId);
+
+
+    // const existingChat = sender.chats.find(chat => chat.friendId.equals(data.getterId));
+
+
+
+    // if (!existingChat) {
+    //   sender.chats.push({ friendId: data.getterId, chatId: data.chatId })
+    //   await sender.save();
+    // }
+
+
+
   }
 }
 
