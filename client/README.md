@@ -1,4 +1,4 @@
-# Quasar App (chat)
+# chat (chat)
 
 A Quasar Project
 
