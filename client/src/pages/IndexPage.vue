@@ -2,10 +2,10 @@
   <q-page class="q-pa-md custom">
     <div>
       <q-chat-message
-        v-for="message in messages"
+        v-for="(message, index) in messages"
         :text="[message.text]"
-        :sent="userId === message.userId"
-        :key="message.userId"
+        :sent="userId !== message.userId"
+        :key="index"
       />
     </div>
     <q-input
@@ -25,16 +25,17 @@ interface Message {
   userId: string;
   text: string;
 }
-// const userId = ref('2');
+const userId = ref('');
 
 const socket = io('http://localhost:4000');
 const messages = ref<Message[]>([]);
 const newMessage = ref<string>('');
 
 socket.on('message', (message: Message) => {
+  if (!userId.value) {
+    userId.value = message.userId;
+  }
   messages.value.push(message);
-  console.log(message);
-  
 });
 
 const sendMessage = () => {
