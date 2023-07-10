@@ -1,14 +1,6 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
+  <q-item clickable tag="a" target="_blank" :href="link">
+    <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
 
@@ -17,6 +9,7 @@
       <q-item-label caption>{{ caption }}</q-item-label>
     </q-item-section>
   </q-item>
+  <q-separator v-if="separator" />
 </template>
 
 <script setup lang="ts">
@@ -25,10 +18,12 @@ export interface EssentialLinkProps {
   caption?: string;
   link?: string;
   icon?: string;
+  separator?: boolean;
 }
 withDefaults(defineProps<EssentialLinkProps>(), {
   caption: '',
   link: '#',
   icon: '',
+  separator: false,
 });
 </script>

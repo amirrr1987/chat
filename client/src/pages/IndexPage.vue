@@ -1,55 +1,72 @@
 <template>
-  <q-page class="q-pa-md custom">
-    <div>
-      <q-chat-message
-        v-for="(message, index) in messages"
-        :text="[message.text]"
-        :sent="userId !== message.userId"
-        :key="index"
-      />
-    </div>
-    <q-input
-      class="custom"
-      type="text"
-      v-model="newMessage"
-      @keydown.enter="sendMessage"
-    />
-  </q-page>
+  <q-list>
+    <template v-for="(friend, index) in friends" :key="index">
+      <q-item clickable v-ripple top>
+        <q-item-section avatar>
+          <q-avatar>
+            <img :src="friend.avatar" />
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ friend.name }}</q-item-label>
+          <q-item-label caption>{{ friend.lastText }}</q-item-label>
+        </q-item-section>
+        <q-item-section avatar>
+          <q-item-label overline>{{ friend.lastSeen }}</q-item-label>
+          <q-item-label><q-badge rounded  label="1" /></q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-separator />
+    </template>
+  </q-list>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { io } from 'socket.io-client';
 
-interface Message {
-  userId: string;
-  text: string;
-}
-const userId = ref('');
-
-const socket = io('http://localhost:4000');
-const messages = ref<Message[]>([]);
-const newMessage = ref<string>('');
-
-socket.on('message', (message: Message) => {
-  if (!userId.value) {
-    userId.value = message.userId;
-  }
-  messages.value.push(message);
-});
-
-const sendMessage = () => {
-  if (newMessage.value.length > 0) {
-    socket.emit('sendMessage', {
-      text: newMessage.value,
-    });
-    newMessage.value = '';
-  }
-};
+const friends = ref([
+  {
+    chatId: '1',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+  {
+    chatId: '2',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+  {
+    chatId: '3',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+  {
+    chatId: '4',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+  {
+    chatId: '5',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+  {
+    chatId: '6',
+    avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+    name: 'Amir Maghami',
+    lastSeen: '02:20',
+    lastText: 'hello, world',
+  },
+]);
 </script>
-<style lang="scss">
-.custom {
-  display: grid;
-  grid-template-rows: 1fr max-content;
-}
-</style>
+<style lang="scss"></style>
