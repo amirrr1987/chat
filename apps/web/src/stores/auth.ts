@@ -9,10 +9,26 @@ const REFRESH_KEY = 'arazchat_refresh';
 const USER_KEY = 'arazchat_user';
 const DEVICE_KEY = 'arazchat_device_id';
 
+/** Prefer randomUUID; fall back when not in a secure context (HTTP + non-localhost). */
+function createDeviceId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('');
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  }
+  return `dev-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
 function getDeviceId() {
   let id = localStorage.getItem(DEVICE_KEY);
   if (!id) {
-    id = crypto.randomUUID();
+    id = createDeviceId();
     localStorage.setItem(DEVICE_KEY, id);
   }
   return id;

@@ -92,7 +92,8 @@ async function onSubmit() {
     }
     connectSocket();
     router.replace('/chats');
-  } catch {
+  } catch (err) {
+    console.error('login failed', err);
     error.value = t('loginFailed');
   } finally {
     loading.value = false;

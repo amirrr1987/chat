@@ -108,7 +108,8 @@ async function onSubmit() {
     }
     connectSocket();
     router.replace('/chats');
-  } catch {
+  } catch (err) {
+    console.error('register failed', err);
     error.value = t('registerFailed');
   } finally {
     loading.value = false;
