@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
-    "pwa:icons": "node ../../scripts/generate-pwa-icons.mjs"
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "@arazchat/shared": "workspace:*",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/simple-peer": "^9.11.9",
+    "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-vue": "^5.2.1",
     "typescript": "^5.8.2",
     "vite": "^6.2.2",
