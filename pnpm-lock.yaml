@@ -172,6 +172,9 @@ importers:
         specifier: ^3.24.2
         version: 3.25.76
     devDependencies:
+      '@types/node':
+        specifier: ^22.13.10
+        version: 22.20.1
       '@types/simple-peer':
         specifier: ^9.11.9
         version: 9.11.9

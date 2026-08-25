@@ -30,6 +30,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@types/node": "^22.13.10",
     "@types/simple-peer": "^9.11.9",
     "@vitejs/plugin-vue": "^5.2.1",
     "typescript": "^5.8.2",
