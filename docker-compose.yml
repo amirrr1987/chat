@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: arazchat
+      POSTGRES_PASSWORD: arazchat
+      POSTGRES_DB: arazchat
+    ports:
+      - '7072:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U arazchat']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '7073:6379'
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - '7071:7071'
+    environment:
+      NODE_ENV: production
+      PORT: 7071
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: arazchat
+      DATABASE_PASSWORD: arazchat
+      DATABASE_NAME: arazchat
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: change-me-in-production
+      JWT_ACCESS_EXPIRES_IN: 15m
+      JWT_REFRESH_DAYS: 30
+      UPLOAD_DIR: ./uploads
+      CORS_ORIGIN: http://localhost:7070
+    volumes:
+      - uploads:/app/apps/api/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - '7070:80'
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:

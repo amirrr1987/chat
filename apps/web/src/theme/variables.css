@@ -1,0 +1,534 @@
+/* ArazChat — Signal Night
+   Inspired by Superhuman depth + Intercom conversational clarity
+   (https://github.com/voltagent/awesome-design-md) × Telegram UX
+   Bold navy atmosphere · electric cyan signal · never flat black */
+
+:root {
+  --font-fa: 'Vazirmatn Variable', 'Vazirmatn', Tahoma, sans-serif;
+  --font-en: 'Poppins', system-ui, -apple-system, sans-serif;
+  --ion-font-family: var(--font-en);
+
+  /* Electric signal cyan */
+  --ion-color-primary: #2ad4ff;
+  --ion-color-primary-rgb: 42, 212, 255;
+  --ion-color-primary-contrast: #041018;
+  --ion-color-primary-contrast-rgb: 4, 16, 24;
+  --ion-color-primary-shade: #25bbdf;
+  --ion-color-primary-tint: #3fd8ff;
+
+  --ion-color-secondary: #5eead4;
+  --ion-color-secondary-rgb: 94, 234, 212;
+  --ion-color-secondary-contrast: #042f2e;
+  --ion-color-secondary-contrast-rgb: 4, 47, 46;
+  --ion-color-secondary-shade: #53ceb9;
+  --ion-color-secondary-tint: #6eecd8;
+
+  --ion-color-tertiary: #38bdf8;
+  --ion-color-tertiary-rgb: 56, 189, 248;
+  --ion-color-tertiary-contrast: #041018;
+  --ion-color-tertiary-contrast-rgb: 4, 16, 24;
+  --ion-color-tertiary-shade: #31a6da;
+  --ion-color-tertiary-tint: #4cc4f9;
+
+  --ion-color-success: #34d399;
+  --ion-color-success-rgb: 52, 211, 153;
+  --ion-color-success-contrast: #042f2e;
+  --ion-color-success-contrast-rgb: 4, 47, 46;
+  --ion-color-success-shade: #2eb986;
+  --ion-color-success-tint: #48d7a3;
+
+  --ion-color-warning: #fbbf24;
+  --ion-color-warning-rgb: 251, 191, 36;
+  --ion-color-warning-contrast: #1c1400;
+  --ion-color-warning-contrast-rgb: 28, 20, 0;
+  --ion-color-warning-shade: #dca820;
+  --ion-color-warning-tint: #fbc53a;
+
+  --ion-color-danger: #fb7185;
+  --ion-color-danger-rgb: 251, 113, 133;
+  --ion-color-danger-contrast: #1c0410;
+  --ion-color-danger-contrast-rgb: 28, 4, 16;
+  --ion-color-danger-shade: #dd6375;
+  --ion-color-danger-tint: #fb7f91;
+
+  --ion-color-medium: #64748b;
+  --ion-color-medium-rgb: 100, 116, 139;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #58667a;
+  --ion-color-medium-tint: #748297;
+
+  --ion-color-light: #e8f4fb;
+  --ion-color-light-rgb: 232, 244, 251;
+  --ion-color-light-contrast: #0b1420;
+  --ion-color-light-contrast-rgb: 11, 20, 32;
+  --ion-color-light-shade: #ccd7dd;
+  --ion-color-light-tint: #eaf5fb;
+
+  /* Light: cool mist, not sterile white */
+  --ion-background-color: #f3f8fc;
+  --ion-background-color-rgb: 243, 248, 252;
+  --ion-text-color: #0b1420;
+  --ion-text-color-rgb: 11, 20, 32;
+  --ion-toolbar-background: rgba(243, 248, 252, 0.82);
+  --ion-toolbar-border-color: rgba(15, 40, 70, 0.08);
+  --ion-item-background: rgba(255, 255, 255, 0.72);
+  --ion-card-background: #ffffff;
+  --ion-border-color: rgba(15, 40, 70, 0.1);
+
+  --araz-surface: #ffffff;
+  --araz-surface-elevated: #ffffff;
+  --araz-ink-mute: #5b6b7c;
+  --araz-glow: 0 0 0 1px rgba(42, 212, 255, 0.22), 0 8px 28px rgba(42, 212, 255, 0.28);
+  --araz-glow-soft: 0 10px 40px rgba(14, 80, 120, 0.12);
+  --araz-mesh:
+    radial-gradient(ellipse 90% 70% at 100% -10%, rgba(42, 212, 255, 0.28), transparent 55%),
+    radial-gradient(ellipse 70% 50% at -10% 100%, rgba(94, 234, 212, 0.18), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 70% 60%, rgba(56, 189, 248, 0.1), transparent 45%),
+    linear-gradient(165deg, #eaf6ff 0%, #f3f8fc 45%, #eef7f4 100%);
+
+  --araz-chat-wallpaper:
+    radial-gradient(ellipse 80% 55% at 8% 12%, rgba(42, 212, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse 65% 45% at 92% 88%, rgba(94, 234, 212, 0.16), transparent 50%),
+    linear-gradient(165deg, #b7e4f8 0%, #d4eef8 40%, #e8f4f0 100%);
+  --araz-chat-bg-fallback: #cfeaf6;
+
+  --araz-bubble-in-bg: #ffffff;
+  --araz-bubble-in-fg: #0b1420;
+  --araz-bubble-out-bg: linear-gradient(145deg, #dff8ff 0%, #c5f0ff 55%, #b8ebc9 100%);
+  --araz-bubble-out-fg: #0b1420;
+  --araz-bubble-shadow: 0 2px 8px rgba(12, 40, 70, 0.1), 0 1px 2px rgba(12, 40, 70, 0.06);
+  --araz-ticks: var(--ion-color-medium);
+  --araz-ticks-read: #0ea5e9;
+  --araz-avatar-fallback-bg: linear-gradient(145deg, #2ad4ff, #38bdf8 55%, #5eead4);
+  --araz-avatar-fallback-fg: #041018;
+  --araz-bubble-radius: 18px;
+  --araz-bubble-radius-tail: 5px;
+  --araz-composer-bg: rgba(255, 255, 255, 0.88);
+  --araz-online-ring: var(--ion-color-success);
+  --araz-list-avatar: 58px;
+  --araz-motion: 220ms;
+  --araz-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --araz-row-radius: 18px;
+}
+
+html[lang='fa'],
+html[dir='rtl'] {
+  --ion-font-family: var(--font-fa);
+}
+
+html[lang='en'],
+html[dir='ltr'] {
+  --ion-font-family: var(--font-en);
+}
+
+body {
+  font-family: var(--ion-font-family);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+/* ——— Dark: Superhuman-depth navy, never pure #000 ——— */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary: #3adbff;
+    --ion-color-primary-rgb: 58, 219, 255;
+    --ion-color-primary-contrast: #031018;
+    --ion-color-primary-contrast-rgb: 3, 16, 24;
+    --ion-color-primary-shade: #33c0e0;
+    --ion-color-primary-tint: #4edfff;
+
+    --ion-color-secondary: #5eead4;
+    --ion-color-secondary-rgb: 94, 234, 212;
+    --ion-color-secondary-contrast: #042f2e;
+    --ion-color-secondary-shade: #53ceb9;
+    --ion-color-secondary-tint: #6eecd8;
+
+    --ion-color-medium: #8ba0b8;
+    --ion-color-medium-rgb: 139, 160, 184;
+    --ion-color-medium-contrast: #0b1420;
+    --ion-color-medium-shade: #7a8da1;
+    --ion-color-medium-tint: #97aabf;
+
+    --ion-color-light: #1a2740;
+    --ion-color-light-rgb: 26, 39, 64;
+    --ion-color-light-contrast: #f0f7ff;
+    --ion-color-light-contrast-rgb: 240, 247, 255;
+    --ion-color-light-shade: #172238;
+    --ion-color-light-tint: #313d53;
+
+    --ion-background-color: #0b1424;
+    --ion-background-color-rgb: 11, 20, 36;
+    --ion-text-color: #eef6ff;
+    --ion-text-color-rgb: 238, 246, 255;
+    --ion-toolbar-background: rgba(12, 22, 40, 0.78);
+    --ion-toolbar-border-color: rgba(120, 180, 255, 0.1);
+    --ion-item-background: rgba(22, 36, 58, 0.72);
+    --ion-card-background: #15243a;
+    --ion-border-color: rgba(120, 180, 255, 0.12);
+
+    --araz-surface: #15243a;
+    --araz-surface-elevated: #1b2d48;
+    --araz-ink-mute: #93a9c4;
+    --araz-glow: 0 0 0 1px rgba(58, 219, 255, 0.35), 0 10px 36px rgba(58, 219, 255, 0.35);
+    --araz-glow-soft: 0 16px 48px rgba(0, 0, 0, 0.45);
+    --araz-mesh:
+      radial-gradient(ellipse 100% 80% at 110% -20%, rgba(58, 219, 255, 0.22), transparent 50%),
+      radial-gradient(ellipse 80% 60% at -20% 110%, rgba(94, 234, 212, 0.12), transparent 48%),
+      radial-gradient(ellipse 55% 40% at 50% 40%, rgba(56, 120, 200, 0.14), transparent 55%),
+      linear-gradient(180deg, #101c32 0%, #0b1424 48%, #0a1628 100%);
+
+    --araz-chat-wallpaper:
+      radial-gradient(ellipse 90% 60% at 15% 8%, rgba(58, 219, 255, 0.18), transparent 52%),
+      radial-gradient(ellipse 70% 50% at 90% 90%, rgba(94, 234, 212, 0.1), transparent 48%),
+      linear-gradient(180deg, #12233a 0%, #0f1c30 50%, #0b1526 100%);
+    --araz-chat-bg-fallback: #0f1c30;
+
+    --araz-bubble-in-bg: #1a2b44;
+    --araz-bubble-in-fg: #eef6ff;
+    --araz-bubble-out-bg: linear-gradient(145deg, #1e5f8a 0%, #1870a8 50%, #1590b8 100%);
+    --araz-bubble-out-fg: #ffffff;
+    --araz-bubble-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    --araz-composer-bg: rgba(15, 28, 48, 0.92);
+    --araz-avatar-fallback-bg: linear-gradient(145deg, #3adbff, #38bdf8 50%, #5eead4);
+    --araz-avatar-fallback-fg: #031018;
+    --araz-ticks-read: #7dd3fc;
+  }
+
+  /* Beat Ionic dark.system pure-black */
+  ion-app,
+  ion-content {
+    --background: var(--ion-background-color);
+    background: var(--ion-background-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --araz-motion: 0ms;
+  }
+}
+
+/* ——— Shared utilities ——— */
+
+.araz-brand-icon {
+  font-size: 4.5rem;
+  filter: drop-shadow(0 12px 28px rgba(var(--ion-color-primary-rgb), 0.45));
+}
+
+.araz-brand-title {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0.35rem 0 0;
+  font-size: 2rem;
+  background: linear-gradient(120deg, var(--ion-text-color) 20%, var(--ion-color-primary) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.araz-auth-hero {
+  padding-block: 2.5rem 1.25rem;
+}
+
+.araz-avatar-lg {
+  --size: 96px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.araz-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--araz-avatar-fallback-bg);
+  color: var(--araz-avatar-fallback-fg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+.araz-empty {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.araz-empty-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.araz-cta-main {
+  --box-shadow: var(--araz-glow);
+  font-weight: 700;
+}
+
+.araz-settings-btn {
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+
+.araz-chat-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 3.4rem;
+  margin-inline-start: 10px;
+}
+
+.araz-chat-meta ion-note {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--araz-ink-mute);
+}
+
+.araz-chat-meta ion-note.unread {
+  color: var(--ion-color-primary);
+  font-weight: 700;
+}
+
+.araz-avatar-wrap {
+  position: relative;
+  width: var(--araz-list-avatar);
+  height: var(--araz-list-avatar);
+  margin-inline-end: 4px;
+}
+
+.araz-avatar-wrap ion-avatar {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb), 0.35), 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.araz-online-dot {
+  position: absolute;
+  inset-inline-end: 1px;
+  bottom: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--araz-online-ring);
+  border: 2.5px solid var(--ion-background-color);
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(var(--ion-color-success-rgb), 0.7);
+}
+
+.araz-chat-row {
+  --min-height: 78px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  --background: var(--ion-item-background);
+  --background-activated: rgba(var(--ion-color-primary-rgb), 0.14);
+  --border-radius: var(--araz-row-radius);
+  --transition: transform var(--araz-motion) var(--araz-ease), background var(--araz-motion) var(--araz-ease);
+  margin: 0 10px 8px;
+  border-radius: var(--araz-row-radius);
+  box-shadow: var(--araz-glow-soft);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.araz-chat-row::part(native) {
+  border-radius: var(--araz-row-radius);
+}
+
+.araz-chat-row.unread h2 {
+  font-weight: 800;
+}
+
+.araz-chat-row h2 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+}
+
+.araz-chat-row p {
+  color: var(--araz-ink-mute);
+  font-size: 0.88rem;
+  opacity: 1;
+}
+
+.araz-badge-unread {
+  --padding-start: 7px;
+  --padding-end: 7px;
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  min-width: 1.4rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.45);
+}
+
+.araz-saved-avatar {
+  background: linear-gradient(145deg, #2ad4ff, #5eead4 70%);
+  color: #041018;
+  font-size: 1.4rem;
+}
+
+.araz-inline-icon {
+  vertical-align: -2px;
+  margin-inline-end: 4px;
+  font-size: 1rem;
+}
+
+.araz-list-ticks {
+  font-size: 0.95rem;
+  vertical-align: -2px;
+  margin-inline-end: 4px;
+}
+
+.araz-list-ticks.araz-ticks--sent,
+.araz-list-ticks.araz-ticks--delivered {
+  color: var(--ion-color-medium);
+}
+
+.araz-list-ticks.araz-ticks--read {
+  color: var(--ion-color-primary);
+}
+
+.araz-chat-list {
+  background: transparent;
+  padding-block: 8px 96px;
+}
+
+.araz-chat-row.saved h2 {
+  color: var(--ion-color-primary);
+}
+
+/* Chats shell */
+.araz-chats-content {
+  --background: transparent;
+  background: var(--araz-mesh);
+}
+
+.araz-chats-content::part(scroll) {
+  background: transparent;
+}
+
+.araz-chats-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-width: 0;
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+}
+
+.araz-chats-toolbar ion-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 1.35rem;
+}
+
+.araz-brand-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin-inline-start: 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ion-color-primary-contrast);
+  background: linear-gradient(120deg, var(--ion-color-primary), var(--ion-color-secondary));
+  box-shadow: var(--araz-glow);
+}
+
+.araz-searchbar {
+  --background: var(--araz-surface-elevated, var(--ion-item-background));
+  --border-radius: 16px;
+  --box-shadow: var(--araz-glow-soft);
+  --icon-color: var(--ion-color-primary);
+  --placeholder-color: var(--araz-ink-mute);
+  padding-inline: 10px;
+  padding-bottom: 6px;
+}
+
+.araz-header-avatar {
+  width: 38px;
+  height: 38px;
+  margin-inline-end: 8px;
+  margin-inline-start: 4px;
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb), 0.4);
+}
+
+/* FAB: physical bottom-right (Telegram), glow pulse */
+.araz-fab {
+  inset-inline: auto 18px !important;
+  right: 18px !important;
+  left: auto !important;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+}
+
+.araz-fab ion-fab-button {
+  --background: linear-gradient(145deg, #3adbff, #2ad4ff 40%, #5eead4);
+  --background-activated: #25bbdf;
+  --color: #031018;
+  --box-shadow: var(--araz-glow);
+  width: 60px;
+  height: 60px;
+  animation: araz-fab-breathe 2.8s var(--araz-ease) infinite;
+}
+
+@keyframes araz-fab-breathe {
+  0%,
+  100% {
+    filter: drop-shadow(0 8px 18px rgba(var(--ion-color-primary-rgb), 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 10px 28px rgba(var(--ion-color-primary-rgb), 0.7));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .araz-fab ion-fab-button {
+    animation: none;
+  }
+}
+
+ion-content.araz-auth-content {
+  --background: transparent;
+  background: var(--araz-mesh);
+}
+
+ion-content.araz-auth-content ion-list[inset] {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--araz-glow-soft);
+  backdrop-filter: blur(12px);
+}
+
+ion-content.araz-auth-content ion-button[expand='block']:not([fill='clear']) {
+  --box-shadow: var(--araz-glow);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Varied avatar energy */
+.araz-chat-row:nth-child(5n + 1) .araz-avatar-fallback:not(.araz-saved-avatar) {
+  background: linear-gradient(145deg, #2ad4ff, #38bdf8);
+}
+.araz-chat-row:nth-child(5n + 2) .araz-avatar-fallback:not(.araz-saved-avatar) {
+  background: linear-gradient(145deg, #5eead4, #2dd4bf);
+}
+.araz-chat-row:nth-child(5n + 3) .araz-avatar-fallback:not(.araz-saved-avatar) {
+  background: linear-gradient(145deg, #38bdf8, #818cf8);
+}
+.araz-chat-row:nth-child(5n + 4) .araz-avatar-fallback:not(.araz-saved-avatar) {
+  background: linear-gradient(145deg, #67e8f9, #2ad4ff);
+}
+.araz-chat-row:nth-child(5n + 5) .araz-avatar-fallback:not(.araz-saved-avatar) {
+  background: linear-gradient(145deg, #a5f3fc, #5eead4);
+}

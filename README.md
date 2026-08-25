@@ -1,73 +1,70 @@
-# chat
+# ArazChat
 
-This template should help get you started developing with Vue 3 in Vite.
+pnpm + Turborepo monorepo — real-time chat (direct + group) with mobile/password auth.
 
-## Recommended IDE Setup
+## Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+| Layer | Tech |
+|-------|------|
+| Monorepo | pnpm, Turborepo |
+| API | NestJS, TypeORM, PostgreSQL, Redis, Passport JWT, Socket.IO, bcryptjs, Zod |
+| Web | Vue 3, Ionic, Pinia, TanStack Query, VueUse, Axios, PWA |
+| Infra | Docker, docker-compose |
 
-## Recommended Browser Setup
+## Ports
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+| Service | Port |
+|---------|------|
+| Web | **7070** |
+| API | **7071** |
+| Postgres | **7072** |
+| Redis | **7073** |
 
-## Type Support for `.vue` Imports in TS
+## Quick start
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+```bash
+# 1. Start Postgres + Redis
+docker compose up postgres redis -d
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-bun install
+# 2. Install & run
+pnpm install
+pnpm dev
 ```
 
-### Compile and Hot-Reload for Development
+- Web: http://localhost:7070
+- API: http://localhost:7071
 
-```sh
-bun dev
+## Register
+
+Mobile format: `09xxxxxxxxx` + password (min 6 chars).
+
+## Features
+
+- Direct (1:1) and group chats
+- Text + image messages
+- Edit / delete messages
+- Sent / delivered / read receipts
+- Sessions + refresh tokens
+- Profile / avatar / settings
+- Last seen
+- fa / en (SPA)
+- Redis online presence
+- Ionic PWA
+
+## Project structure
+
+```
+apps/
+  api/     NestJS backend
+  web/     Vue + Ionic PWA
+packages/
+  shared/  Zod schemas + shared types
 ```
 
-### Type-Check, Compile and Minify for Production
+## Docker (full stack)
 
-```sh
-bun run build
+```bash
+docker compose up --build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-bun test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-bun run build
-
-# Runs the end-to-end tests
-bun test:e2e
-# Runs the tests only on Chromium
-bun test:e2e --project=chromium
-# Runs the tests of a specific file
-bun test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
-bun test:e2e --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-bun lint
-```
+Web `:7070` · API `:7071` · Postgres `:7072` · Redis `:7073`
